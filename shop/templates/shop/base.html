@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}My shop{% endblock %}</title>
+  <link href="{% static "css/base.css" %}" rel="stylesheet">
+</head>
+<body>
+  <div id="subheader">
+  <a href="/"><img src="{% static "img/tshop.PNG" %}" width="50" height="50"></a>
+    <div class="cart">
+    <div id="login">
+      <a href="/" style="color:white;">Login</a>
+      <a href="/" style="color:white;"> | Sign Up</a>
+    </div>
+      {% with total_items=cart|length %}
+          {% if cart|length > 0 %}
+            Your cart:
+            <a href="{% url "cart:cart_detail" %}" style="color:white;">
+              {{ total_items }} item{{ total_items|pluralize }},
+              ${{ cart.get_total_price }}
+            </a>
+          {% else %}
+            <a href="{% url "cart:cart_detail" %}"><img src="{% static "img/cart.png" %}" width="35" height="35"></a>
+          {% endif %}
+        {% endwith %}
+    </div>
+  </div>
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+{% block footer %}
+    {% include 'shop/footer.html' %}
+{% endblock %}
+</html>

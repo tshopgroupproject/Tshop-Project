@@ -11,8 +11,13 @@
   <a href="/"><img src="{% static "img/tshop.PNG" %}" width="50" height="50"></a>
     <div class="cart">
     <div id="login">
-      <a href="/" style="color:white;">Login</a>
-      <a href="/" style="color:white;"> | Sign Up</a>
+      {% if user.is_authenticated %}
+      {{ user.get_username }}
+      <a href="{% url 'accounts:logout' %}?next={{ next }}" style="color:white;">| Logout</a>
+      {% else %}
+      <a href="{% url 'accounts:login' %}?next={{ next }}" style="color:white;">Login</a>
+      <a href="{% url 'accounts:register' %}?next={{ next }}" style="color:white;">| Sign Up</a>
+      {% endif %}
     </div>
       {% with total_items=cart|length %}
           {% if cart|length > 0 %}

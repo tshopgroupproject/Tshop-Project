@@ -3,6 +3,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
+class PasswordResetForm(forms.Form):
+    email = forms.CharField()
+
+class EmailForm(forms.Form):
+    email = forms.EmailField()
+    message = forms.CharField()
 
 class UserLoginForm(forms.Form):
     """

@@ -1,5 +1,10 @@
-{% extends "base.html" %}
+{% extends "shop/base.html" %}
+{% load static %}
 {% block content %}
     <h2>Success!</h2>
     <p>You are logged in as {{ user.email }} </p>
+
+    <a href="shop:base" style="color:white;">Return to Home Page</a>
+{% endblock %}
+{% block footer %}
 {% endblock %}

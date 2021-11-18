@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'django_forms_bootstrap',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +43,8 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
+    'accounts.apps.AccountsConfig',
+    'crispy_forms',
 ]
 
 
@@ -50,7 +53,8 @@ INSTALLED_APPS = [
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'tshopgroupproject@gmail.com'
 EMAIL_HOST_PASSWORD = 'P@ssw0rd$'
-EMAIL_PORT = '465'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 
 MIDDLEWARE = [

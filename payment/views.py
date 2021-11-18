@@ -1,11 +1,16 @@
 import braintree
+from django.db import models
+from django.forms.models import model_to_dict
 from django.shortcuts import render, redirect, get_object_or_404
+from django import forms
+from orders.forms import OrderCreateForm
 from orders.models import Order
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from django.conf import settings
 #import weasyprint
 from io import BytesIO
+from django.core.mail import send_mail
 
 
 def payment_process(request):
@@ -34,7 +39,7 @@ def payment_process(request):
             message = 'Thank you for shopping at Fun for Kids. Your total bill card to CC is.'
             email = EmailMessage(subject,
                                  message,
-                                 'admin@myshop.com',
+                                 'dvanvleet@unomaha.edu',
                                  [order.email])
             # generate PDF
 #            html = render_to_string('orders/order/pdf.html', {'order': order})
@@ -61,6 +66,11 @@ def payment_process(request):
 
 
 def payment_done(request):
+    form= OrderCreateForm(request.POST or None)
+    if form.is_valid():
+        data= form.cleaned_data.get("email")
+        send_mail('My Subject', 'My message', 'tshopgroupproject@gmail.com',
+        [data], fail_silently=False)
     return render(request, 'payment/done.html')
 
 

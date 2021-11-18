@@ -13,10 +13,10 @@
     <div id="login">
       {% if user.is_authenticated %}
       {{ user.get_username }}
-      <a href="{% url 'accounts:logout' %}?next={{ next }}" style="color:white;">| Logout</a>
+      <a href="{% url 'logout' %}?next={{ next }}" style="color:white;">| Logout</a>
       {% else %}
-      <a href="{% url 'accounts:login' %}?next={{ next }}" style="color:white;">Login</a>
-      <a href="{% url 'accounts:register' %}?next={{ next }}" style="color:white;">| Sign Up</a>
+      <a href="{% url 'login' %}?next={{ next }}" style="color:white;">Login</a>
+      <a href="{% url 'register' %}?next={{ next }}" style="color:white;">| Sign Up</a>
       {% endif %}
     </div>
       {% with total_items=cart|length %}

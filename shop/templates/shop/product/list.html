@@ -19,6 +19,19 @@
       {% endfor %}
     </ul>
   </div>
+  <div id="sidebar">
+    <h3>Reviews</h3>
+    <ul>
+      <li {% if not review %}class="selected"{% endif %}>
+        <a href="{% url "shop:review_detail" %}">All</a>
+      </li>
+      {% for r in reviews %}
+        <li {% if review.review == r.review %}class="selected"{% endif %}>
+          <a href="{{ r.get_absolute_url }}">{{ r.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
   <div id="main" class="product-list">
     <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
     {% for product in products %}

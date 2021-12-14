@@ -28,3 +28,11 @@ def product_detail(request, id, slug):
                   {'product': product,
                    'cart_product_form': cart_product_form})
 
+def review_detail(request):
+    review = None
+    reviews = Review.objects.all()
+    return render(request,
+        'shop/product/review.html',
+        {'review': review,
+         'reviews': reviews})
+

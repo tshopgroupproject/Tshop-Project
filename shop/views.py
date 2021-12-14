@@ -32,7 +32,7 @@ def review_detail(request):
     review = None
     reviews = Review.objects.all()
     return render(request,
-        'shop/product/review.html',
+        'shop/product/list.html',
         {'review': review,
          'reviews': reviews})
 

@@ -1,6 +1,24 @@
 from django.db import models
 from django.urls import reverse
 
+class Review(models.Model):
+    name = models.CharField(max_length=200,
+                            db_index=True)
+    review = models.CharField(max_length=500,
+                            unique=True)
+
+    class Meta:
+        ordering = ('name',)
+        verbose_name = 'review'
+        verbose_name_plural = 'reviews'
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+            return reverse('shop:product_review',
+                           args=[self.review])
+
 class Category(models.Model):
     name = models.CharField(max_length=200,
                             db_index=True)
